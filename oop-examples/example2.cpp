@@ -1,41 +1,40 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-using namespace std;
-
-void writeToFile(string name, string text){
-	ofstream File(name);
-	File << text << endl;
+void writeToFile(std::string name, std::string text){
+	std::ofstream File;
+	File.open(name, std::ios_base::app);
+	File << text << std::endl;
 	File.close();
 }
-void readFile(string name){
-	ifstream File(name);
-	string Text;
+void readFile(std::string name){
+	std::ifstream File(name);
+	std::string Text;
 	while (getline (File,Text)){
-		cout << Text << endl;
+		std::cout << Text << std::endl;
 	}
 	File.close();
 }
 
 int main(){
-	cout << "Desea leer o escribir un archivo?: ";
-	string ans;
-	cin >> ans;
+	std::cout << "Desea leer o escribir un archivo?: ";
+	std::string ans;
+	std::cin >> ans;
 	while (ans != "leer" && ans != "escribir"){
-		cout << "Desea leer o escribir un archivo?: ";
-		cin >> ans;
+		std::cout << "Desea leer o escribir un archivo?: ";
+		std::cin >> ans;
 	}
-	cout << "Ingrese el nombre del archivo: ";
-	string file;
-	cin >> file;
+	std::cout << "Ingrese el nombre del archivo: ";
+	std::string file;
+	std::cin >> file;
 	if (ans == "leer"){
 		readFile(file);
 	}
 	else{
-		cout << "Ingrese la linea a escribir: ";
-		string line;
-		cin.ignore();
-		getline(cin,line);
+		std::cout << "Ingrese la linea a escribir: ";
+		std::string line;
+		std::cin.ignore();
+		std::getline(std::cin,line);
 		writeToFile(file,line);
 	}
 	return 0;
